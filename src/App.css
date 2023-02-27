@@ -1,38 +1,36 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+}
+input{
+  width: 50%
+}
+.productCard {
+  width: 100%;
   text-align: center;
+  height: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.productImg {
+  width: 70%;
+  width: 250px;
+  height: 250px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.productTitle {
+  width: 250px;
+  height: 110px;
+  font-size: 22px;
+  font-weight: bolder;
+  margin-top: 0.5em;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.productDescription {
+  color: gray;
+  width: 250px;
+  height: 120px;
+  text-align: justify;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.productPrice {
+  font-size: 20px;
+  font-weight: bolder;
 }
