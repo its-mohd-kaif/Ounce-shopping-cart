@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { decrementCart, deleteCart, incrementCart } from "../redux/reduxSlice";
+import { useNavigate } from "react-router-dom";
+import {
+  decrementCart,
+  deleteCart,
+  incrementCart,
+  removeCart,
+} from "../redux/reduxSlice";
 // Cart Component
 function CartPage() {
+  //Redux State of Cart Array
   const cartArr = useSelector((state) => state.products.cart);
-  // State For Cart Array
+
+  const navigate = useNavigate();
+
   // State For Price
   const [price, setPrice] = useState(0);
+
   const dispatch = useDispatch();
-  console.log("CART ARR", cartArr);
+
   useEffect(() => {
     let tempPrice = 0;
     for (let i = 0; i < cartArr.length; i++) {
@@ -17,6 +26,7 @@ function CartPage() {
     }
     setPrice(tempPrice);
   }, [cartArr]);
+
   // Delete Item Handler
   const deleteHandler = (id) => {
     for (let i = 0; i < cartArr.length; i++) {
@@ -28,6 +38,7 @@ function CartPage() {
       }
     }
   };
+
   // Increment Quantity Handler
   const incrementHandler = (id) => {
     for (let i = 0; i < cartArr.length; i++) {
@@ -36,6 +47,7 @@ function CartPage() {
       }
     }
   };
+
   // Decrement Quantity Handler
   const decrementHandler = (id) => {
     for (let i = 0; i < cartArr.length; i++) {
@@ -51,14 +63,18 @@ function CartPage() {
       }
     }
   };
+
   return (
     <center>
-      <section style={{ width: "80%" }}>
+      <section style={{ width: "80%", marginTop: "3em" }}>
         <h1>
           <i className="fas fa-shopping-bag mt-5"></i>&nbsp;My Cart
         </h1>
         {cartArr.length !== 0 ? (
-          <div className="d-flex justify-content-around">
+          <div
+            style={{ marginTop: "3em" }}
+            className="d-flex justify-content-around"
+          >
             <div style={{ width: "60%" }}>
               <hr></hr>
               <div style={{ textAlign: "left" }}>
@@ -130,13 +146,18 @@ function CartPage() {
                 </tbody>
               </table>
               <div className="d-grid gap-2 col-12 mx-auto">
-                <Link
-                  to={"/checkout"}
-                  className="btn btn-primary addToCart"
+                <button
+                  onClick={() => {
+                    alert("Checkout Successfully :)");
+                    dispatch(removeCart());
+                    navigate("/");
+                  }}
+                  className="btn btn-success"
                   type="button"
+                  style={{ fontSize: "larger" }}
                 >
                   <i className="fas fa-shopping-cart"></i>&nbsp;Checkout
-                </Link>
+                </button>
               </div>
             </div>
           </div>

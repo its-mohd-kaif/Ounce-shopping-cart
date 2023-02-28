@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import CarouselComponent from "./CarouselComponent";
 import Products from "./Products";
+// Navbar Component
 function Navbar() {
+  // Redux Cart Array
   const cartArr = useSelector((state) => state.products.cart);
   return (
     <div>

@@ -11,6 +11,7 @@ import {
 import Cart from "./components/Cart";
 
 function App() {
+  // Router
   let router = createBrowserRouter(
     createRoutesFromElements(
       <>

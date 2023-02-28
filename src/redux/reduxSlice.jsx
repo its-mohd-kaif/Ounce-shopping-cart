@@ -46,6 +46,7 @@ const reduxSlice = createSlice({
       const newCart = state.cart.filter((item) => item.id !== action.payload);
       state.cart = newCart;
     },
+    // Action for increment quantity of product
     incrementCart: (state, action) => {
       state.cart.map((item) => {
         if (item.id === action.payload) {
@@ -53,6 +54,7 @@ const reduxSlice = createSlice({
         }
       });
     },
+    // Action for decrement quantity of product
     decrementCart: (state, action) => {
       state.cart.map((item) => {
         if (item.id === action.payload) {
@@ -60,13 +62,30 @@ const reduxSlice = createSlice({
         }
       });
     },
+    // Action for remove cart array
+    removeCart: (state) => {
+      state.cart = [];
+    },
     // Action For Search Products
     searchArr: (state, action) => {
       state.products = action.payload;
     },
-    // Action For Clear Search Array
-    clearSearch: (state) => {
-      state.search = [];
+    // Actions for filter products array
+    filterLToHPrice: (state) => {
+      state.products.sort((a, b) => a.price - b.price);
+    },
+    filterLToHRating: (state) => {
+      state.products.sort((a, b) => a.rating - b.rating);
+    },
+    filterHToLPrice: (state) => {
+      state.products.sort((a, b) => b.price - a.price);
+    },
+    filterHToLRating: (state) => {
+      state.products.sort((a, b) => b.rating - a.rating);
+    },
+    // Action for clear filter
+    clearFilter: (state) => {
+      state.products = state.clone;
     },
   },
   extraReducers: (builder) => {
@@ -93,7 +112,13 @@ export const {
   deleteCart,
   incrementCart,
   decrementCart,
+  removeCart,
   searchArr,
   clearSearch,
+  filterLToHPrice,
+  filterLToHRating,
+  filterHToLPrice,
+  filterHToLRating,
+  clearFilter,
 } = reduxSlice.actions;
 export default reduxSlice.reducer;
